@@ -1,0 +1,82 @@
+<main class="main-content  mt-0">
+  <section>
+    <div class="page-header min-vh-100">
+      <div class="container">
+        <div class="row">
+          
+          <div class="col-xl-9 col-lg-5 col-md-12 d-flex flex-column ms-auto me-auto ms-lg-auto me-lg-5">
+            <div class="card card-plain">
+              <div class="card-header">
+                <h2 class="font-weight-bolder">AJOUTER CONTRAT</h2>
+              </div>
+              <div class="card-body">
+                <form #f="ngForm" (ngSubmit)="saveContrat()
+                ">
+                    <label >date debut  </label>
+                    <div class="input-group input-group-outline mb-3">
+
+                    <input type="date" [(ngModel)]="contrat.dateDebutContrat" name="dateDebutContrat"
+                    class="form-control"  #t="ngModel" required>
+                   
+                  </div>
+                  
+                  <div class="alert alert-danger" *ngIf="t.invalid && t.touched">
+                    <div *ngIf="t.hasError('required')">veuillez saisir la date Debut contrat</div>
+                    <div *ngIf="t.hasError('pattern')">nom invalide!!</div>
+                </div>
+                    <label>date Fin</label>
+                    <div class="input-group input-group-outline mb-3">
+
+                    <input  class="form-control" type="date" [(ngModel)]="contrat.dateFinContrat" name="dateFinContrat" 
+                    class="form-control"  #d="ngModel" required >
+                  </div>
+                  <div class="alert alert-danger" *ngIf="d.invalid && d.touched">
+                    <div *ngIf="d.hasError('required')">veuillez saisir la date Fin contrat</div>
+                    <div *ngIf="d.hasError('pattern')">date invalide!!</div>
+                </div>
+               
+                <label >  specialite  </label>
+
+                <label class="form-label"></label>
+                  <div class="input-group input-group-outline mb-3">
+                  
+                    <select class="form-select" name="specialite" #m="ngModel"  required [(ngModel)]="contrat.specialite" >
+                      <option value="" selected disabled>Please select a status </option>
+                      <option value="IA"> IA</option>
+                      <option value="RESEAUX"> RESEAUX </option>
+                      <option value="CLOUD"> CLOUD </option>
+                      <option value="SECURITE"> SECURITE </option>    
+                    
+                   
+                </select>
+            
+             
+              </div>
+              <div class="alert alert-danger" *ngIf="m.invalid && m.touched">
+                <div *ngIf="m.hasError('required')">veuillez saisir la specialite</div>
+        
+            </div>
+            <div class="form-group">
+              <label>montant</label>
+              <input  class="form-control"  required minlength="3" placeholder= " montant de Contrat"  type="number" #qt="ngModel" [(ngModel)]="contrat.montantContrat" name="montantContrat" class="form-control" required>
+              <div class="alert alert-danger" *ngIf="qt.value<7000">
+                montant < 7000 dt !!!
+              </div>
+                </div> 
+
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0"
+                    [disabled]="f.invalid">Ajouter</button>
+                  </div>
+                </form>
+              
+              
+              </div>
+            
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
